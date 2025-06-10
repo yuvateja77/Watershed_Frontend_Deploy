@@ -6,7 +6,6 @@ import * as turf from '@turf/turf';
 import Plot from 'react-plotly.js';
 import '../../assets/css/button-group.css'
 import '../../assets/css/action-buttons.css'
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function MapContent() {
@@ -188,14 +187,6 @@ function Hydrology() {
   const [watershed, setWatershed] = useState(null);
   const [streamnetwork, setStreamnetwork] = useState(null);
 
-  // useEffect(() => {
-  //   delete L.Icon.Default.prototype._getIconUrl;
-  //   L.Icon.Default.mergeOptions({
-  //     iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  //     iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  //     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-  //   });
-  // }, []);
 
   useEffect(() => {
     const baseUrl = import.meta.env.VITE_APP_GCS_BASE_URL;

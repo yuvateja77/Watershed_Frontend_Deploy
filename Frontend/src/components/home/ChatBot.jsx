@@ -70,14 +70,13 @@ function ChatBot() {
     }
   };
 
-  // ... rest of your component remains the same ...
   const renderMessage = (message) => {
     switch (message.type) {
       case 'user':
         return (
           <div className="flex items-end justify-end space-x-2">
             <div className="bg-blue-500 text-white rounded-lg p-3 max-w-[80%]">
-              <p>{message.content}</p>
+              <p className="text-white">{message.content}</p>
             </div>
           </div>
         );
@@ -85,9 +84,9 @@ function ChatBot() {
         return (
           <div className="flex items-start space-x-2">
             <div className="bg-sky-100 rounded-lg p-3 max-w-[80%]">
-              <p className="text-sky-800">{message.content}</p>
+              <p className="text-black">{message.content}</p>
               {message.sources && message.sources.length > 0 && (
-                <div className="mt-2 text-xs text-sky-600">
+                <div className="mt-2 text-xs text-black">
                   <p className="font-semibold">Sources:</p>
                   <ul className="list-disc list-inside">
                     {message.sources.map((source, index) => (
@@ -106,7 +105,7 @@ function ChatBot() {
         return (
           <div className="flex items-start space-x-2">
             <div className="bg-red-100 rounded-lg p-3 max-w-[80%]">
-              <p className="text-red-800">{message.content}</p>
+              <p className="text-black">{message.content}</p>
             </div>
           </div>
         );
@@ -135,11 +134,11 @@ function ChatBot() {
           </div>
 
           {/* Chat Messages */}
-          <div className="h-[calc(100%-8rem)] overflow-y-auto p-4 space-y-4">
+          <div className="h-[calc(100%-8rem)] overflow-y-auto p-4 space-y-4 text-black">
             {messages.length === 0 && (
               <div className="flex items-start space-x-2">
                 <div className="bg-sky-100 rounded-lg p-3">
-                  <p className="text-sky-800">
+                  <p className="text-black">
                     Hello! I'm your water resources assistant. I can help you find information about:
                     <br />
                     - Stream flow data
@@ -165,7 +164,7 @@ function ChatBot() {
                 <div className="bg-sky-100 rounded-lg p-3">
                   <div className="flex items-center space-x-2">
                     <FaSpinner className="animate-spin" />
-                    <p className="text-sky-800">Searching documents...</p>
+                    <p className="text-black">Searching documents...</p>
                   </div>
                 </div>
               </div>
@@ -181,7 +180,7 @@ function ChatBot() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Ask about water resources..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent text-black"
                 disabled={isLoading}
               />
               <button

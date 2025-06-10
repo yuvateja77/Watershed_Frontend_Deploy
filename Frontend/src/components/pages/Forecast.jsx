@@ -404,15 +404,7 @@ function Forecast() {
     setSelectedPosition([gauge.latitude, gauge.longitude]);
   };
 
-  useEffect(() => {
-    // Ensure custom marker icons are correctly loaded
-    delete L.Icon.Default.prototype._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    });
-  }, []);
+ 
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-gray-50 to-white flex flex-col justify-start py-4 sm:py-6">
