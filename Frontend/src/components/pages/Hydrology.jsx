@@ -188,18 +188,17 @@ function Hydrology() {
   const [watershed, setWatershed] = useState(null);
   const [streamnetwork, setStreamnetwork] = useState(null);
 
-  useEffect(() => {
-    delete L.Icon.Default.prototype._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    });
-  }, []);
+  // useEffect(() => {
+  //   delete L.Icon.Default.prototype._getIconUrl;
+  //   L.Icon.Default.mergeOptions({
+  //     iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  //     iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  //     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  //   });
+  // }, []);
 
   useEffect(() => {
     const baseUrl = import.meta.env.VITE_APP_GCS_BASE_URL;
-    console.log("link",baseUrl);
     const fetchData = async () => {
       try {
         const boundaryResponse = await fetch(`${baseUrl}/Mo_Hydrology/Missouri_water_model_boundary.json`);
@@ -317,6 +316,7 @@ function Hydrology() {
   };
 
   const handleButtonClick = () => {
+    console.log("button in hydrology triggered");
     if (selectedFeature && startDate && endDate) {
       let formatted_startdate = formatDate(startDate);
       let formatted_enddate = formatDate(endDate);
@@ -441,7 +441,7 @@ function Hydrology() {
             <button
               onClick={resetSelection}
               className="action-button action-button-danger"
-              disabled
+              
             >
               Clear
             </button>
