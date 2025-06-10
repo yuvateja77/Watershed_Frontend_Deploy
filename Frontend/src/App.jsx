@@ -28,7 +28,7 @@ function App() {
             <Route path="/Instrumentation" element={<Instrumentation />} />
             <Route path="/WaterQuality" element={<WaterQuality />} />
             <Route path="/OutreachEducation" element={<OutreachEducation />} />
-            <Route path="/*" element={<Navigate to="/home" replace />} />
+            <Route path="*" element={<Navigate to="/home" replace />} />
           </Routes>
         </Layout>
       </div>
