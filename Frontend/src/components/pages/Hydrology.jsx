@@ -6,6 +6,7 @@ import * as turf from '@turf/turf';
 import Plot from 'react-plotly.js';
 import '../../assets/css/button-group.css'
 import '../../assets/css/action-buttons.css'
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function MapContent() {
@@ -53,7 +54,7 @@ function ToggleButton({ activeLayer, onChange }) {
     }`}
     onClick={() => onChange('stream')}
   >
-    Streamflow
+    Streams
   </button>
 </div>
   );
@@ -187,9 +188,18 @@ function Hydrology() {
   const [watershed, setWatershed] = useState(null);
   const [streamnetwork, setStreamnetwork] = useState(null);
 
+  useEffect(() => {
+    delete L.Icon.Default.prototype._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    });
+  }, []);
 
   useEffect(() => {
     const baseUrl = import.meta.env.VITE_APP_GCS_BASE_URL;
+    console.log("link",baseUrl);
     const fetchData = async () => {
       try {
         const boundaryResponse = await fetch(`${baseUrl}/Mo_Hydrology/Missouri_water_model_boundary.json`);
@@ -307,7 +317,6 @@ function Hydrology() {
   };
 
   const handleButtonClick = () => {
-    console.log("button in hydrology triggered");
     if (selectedFeature && startDate && endDate) {
       let formatted_startdate = formatDate(startDate);
       let formatted_enddate = formatDate(endDate);
@@ -349,14 +358,24 @@ function Hydrology() {
   </div>
 </div>
 
-        <div className="px-4 py-4 bg-gray-50">
-      <p className="text-gray-700 mb-2">
-  The Missouri River Basin Model provides historical and projected streamflow forecasts from 2000 to 2019 (note: this will include forecasts in the future with an updated date range). The hydrological model was developed using the Soil and Water Assessment Toolkit (SWAT). This product is updated daily. 
-  <a href="link_to_publication" className="text-blue-500 underline"> Read here for more information on our model development</a>. 
-  Select a location and a date range to view the interactive hydrograph information. <span className="font-medium text-gray-800">We are currently awaiting official publication.</span>
-</p>
+<div className="px-6 py-6 bg-gray-50 rounded-xl shadow-sm max-w-7xl mx-auto space-y-6">
+  <p className="text-base text-gray-700 leading-relaxed">
+    The watershed model provides streamflow simulations at daily time steps since 2000. The model is also being set up to provide ensemble flow forecasts for up to 30 days. The study region is divided into 4,000+ watersheds and stream segments, with outputs updated daily.
+    
+    <a
+      href="https://link_to_publication.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-600 underline hover:text-blue-800 font-medium"
+    >
+      Read here for more information on our model development
+    </a>
+    .
+    Select a location and a date range to view the interactive outputs.
+  </p>
+</div>
 
-      </div>
+
 
         <div className="flex-1 flex flex-col relative">
           <div className="flex-1 flex lg:flex-row flex-col min-h-[600px] pb-20">
@@ -432,7 +451,7 @@ function Hydrology() {
             <button
               onClick={resetSelection}
               className="action-button action-button-danger"
-              
+              disabled
             >
               Clear
             </button>
