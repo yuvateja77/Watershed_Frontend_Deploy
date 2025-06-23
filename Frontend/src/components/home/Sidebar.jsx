@@ -23,7 +23,7 @@ export function Sidebar() {
       >
         <Card className="h-full w-full p-6 shadow-none border-none bg-white/95 backdrop-blur-sm">
           <Typography variant="h5" className="mb-6 ml-4 text-blue-900 font-bold text-xl">
-            Watershed Dashboard
+          Explore Lab Resources
           </Typography>
 
           <List className="space-y-1">
@@ -31,11 +31,11 @@ export function Sidebar() {
               { name: "Home", path: "/home" },
               { name: "MO Hydrology", path: "/Hydrology" },
               { name: "MO Forecast", path: "/Forecast" },
-              { name: "Mississippi Basin", path: "/MississippiRiver" },
+              { name: "Mississippi River Basin", path: "/MississippiRiver" },
               { name: "Agricultural Water", path: "/WaterDemand" },
               { name: "Climate Indices", path: "/ClimateIndices", disabled: true },
-              { name: "UAV Imaging", path: "/UAVImaging" },
               { name: "Instrumentation", path: "/Instrumentation" },
+              { name: "UAV Imaging", path: "/UAVImaging" },
               { name: "Water Quality", path: "/WaterQuality" },
               { name: "Outreach & Education", path: "/OutreachEducation" },
             ].map((item, index) => (

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import TermsOfServiceModal from './TermsOfServiceModal';
 import ContactUsModal from './ContactUsModal';
+import MoreInformationModal from './MoreInformationModal';
 
 function Footer() {
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isMoreInfoModalOpen, setIsMoreInfoModalOpen] = useState(false);
 
   const handleCloseModal = () => {
     setIsTermsModalOpen(false);
     setIsContactModalOpen(false);
+    setIsMoreInfoModalOpen(false);
   };
 
   return (
@@ -36,6 +39,12 @@ function Footer() {
               >
                 Contact Us
               </button>
+              <button
+                onClick={() => setIsMoreInfoModalOpen(true)}
+                className="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
+              >
+                More Information
+              </button>
             </div>
           </div>
         </div>
@@ -48,6 +57,11 @@ function Footer() {
 
       <ContactUsModal
         isOpen={isContactModalOpen}
+        onClose={handleCloseModal}
+      />
+
+      <MoreInformationModal
+        isOpen={isMoreInfoModalOpen}
         onClose={handleCloseModal}
       />
     </>

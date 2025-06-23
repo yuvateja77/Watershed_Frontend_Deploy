@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaRobot, FaTimes, FaPaperPlane, FaFileAlt, FaSpinner } from 'react-icons/fa';
+import { FaRobot, FaTimes, FaPaperPlane, FaFileAlt, FaSpinner, FaRegCopy } from 'react-icons/fa';
 
 function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,23 +70,30 @@ function ChatBot() {
     }
   };
 
+  // Copy the bot response to clipboard
+  const handleCopy = (text) => {
+    if (navigator && navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+    }
+  };
+
   const renderMessage = (message) => {
     switch (message.type) {
       case 'user':
         return (
           <div className="flex items-end justify-end space-x-2">
-            <div className="bg-blue-500 text-white rounded-lg p-3 max-w-[80%]">
-              <p className="text-white">{message.content}</p>
+            <div className="bg-blue-500 text-white rounded-lg p-3 max-w-[80%] overflow-x-hidden">
+              <p>{message.content}</p>
             </div>
           </div>
         );
       case 'bot':
         return (
           <div className="flex items-start space-x-2">
-            <div className="bg-sky-100 rounded-lg p-3 max-w-[80%]">
-              <p className="text-black">{message.content}</p>
+            <div className="bg-sky-100 rounded-lg p-3 max-w-[80%] relative overflow-x-hidden">
+              <p className="text-sky-800">{message.content}</p>
               {message.sources && message.sources.length > 0 && (
-                <div className="mt-2 text-xs text-black">
+                <div className="mt-2 text-xs text-sky-600">
                   <p className="font-semibold">Sources:</p>
                   <ul className="list-disc list-inside">
                     {message.sources.map((source, index) => (
@@ -98,14 +105,22 @@ function ChatBot() {
                   </ul>
                 </div>
               )}
+              {/* Inbuilt Logo Copy Button */}
+              <button
+                onClick={() => handleCopy(message.content)}
+                className="absolute bottom-2 right-2 bg-white rounded-full p-1 shadow hover:shadow-md border border-gray-200 hover:bg-gray-100 transition"
+                title="Copy response"
+              >
+                <FaRegCopy className="w-6 h-6 text-sky-500" />
+              </button>
             </div>
           </div>
         );
       case 'error':
         return (
           <div className="flex items-start space-x-2">
-            <div className="bg-red-100 rounded-lg p-3 max-w-[80%]">
-              <p className="text-black">{message.content}</p>
+            <div className="bg-red-100 rounded-lg p-3 max-w-[80%] overflow-x-hidden">
+              <p className="text-red-800">{message.content}</p>
             </div>
           </div>
         );
@@ -134,11 +149,11 @@ function ChatBot() {
           </div>
 
           {/* Chat Messages */}
-          <div className="h-[calc(100%-8rem)] overflow-y-auto p-4 space-y-4 text-black">
+          <div className="h-[calc(100%-8rem)] overflow-y-auto overflow-x-hidden p-4 space-y-4">
             {messages.length === 0 && (
               <div className="flex items-start space-x-2">
                 <div className="bg-sky-100 rounded-lg p-3">
-                  <p className="text-black">
+                  <p className="text-sky-800">
                     Hello! I'm your water resources assistant. I can help you find information about:
                     <br />
                     - Stream flow data
@@ -164,7 +179,7 @@ function ChatBot() {
                 <div className="bg-sky-100 rounded-lg p-3">
                   <div className="flex items-center space-x-2">
                     <FaSpinner className="animate-spin" />
-                    <p className="text-black">Searching documents...</p>
+                    <p className="text-sky-800">Searching documents...</p>
                   </div>
                 </div>
               </div>
@@ -180,7 +195,7 @@ function ChatBot() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Ask about water resources..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent text-black"
+                className="flex-1 px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 disabled={isLoading}
               />
               <button
