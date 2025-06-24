@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
 const images = [
+  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/PHOTOS/HTH_8237.jpeg', alt: "Fall picnic 2023" },
   {
-    src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/AGU-Fall-Meeting-2023.JPG',
+    src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/PHOTOS/HTH8117.jpeg',
     alt: "AGU Fall Meeting 2023"
   },
   {
-    src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/Cocao-farm-Ghana-by-Aloysius.JPG',
+    src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/PHOTOS/HTH8421.jpeg',
     alt: "Cocoa farm Ghana"
   },
   {
-    src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/Fall-2023-by-Aloysius.JPG',
+    src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/PHOTOS/HTH8424.jpeg',
     alt: "Fall 2023"
   },
-  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/Fall-mums-by-Aloysius.JPG', alt: "Fall mums" },
-  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/Fall-picnic-2023-by-Aloysius.JPG', alt: "Fall picnic 2023" },
-  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/Golden-Gate-Bridge-by-Aloysius.JPG', alt: "Golden Gate Bridge" },
-  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/Lake-Malawi_by-Maggie-Munthali.jpg', alt: "Lake Malawi" },
+  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/PHOTOS/HTH8470.jpeg', alt: "Fall mums" },
+  
+  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/PHOTOS/IMG_0196.jpeg', alt: "Golden Gate Bridge" },
+  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/PHOTOS/IMG_1455.jpeg', alt: "Lake Malawi" },
   { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/River-Ghana-by-Aloysius.JPG', alt: "River Ghana" },
-  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/Summer-MU-2023-01-by-Aloysius.JPG', alt: "Summer MU 2023" }
+  { src: 'https://storage.googleapis.com/miz_hydrology/Frontend_Data/Home_Tab/PHOTOS/Lake-Malawi_by-Maggie-Munthali.jpeg', alt: "Summer MU 2023" }
 ];
 
 function ImageSlider() {
