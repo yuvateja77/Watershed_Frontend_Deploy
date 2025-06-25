@@ -119,7 +119,7 @@ function OutreachEducation() {
               Certificates and Minors
             </h2>
             <p className="text-lg text-emerald-700 max-w-3xl mx-auto">
-              Expand your academic credentials with our specialized programs
+              Academic programs – certificates and minors related water resources management at Mizzou​
             </p>
           </div>
 

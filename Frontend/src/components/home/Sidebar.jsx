@@ -35,7 +35,7 @@ export function Sidebar() {
               { name: "Agricultural Water", path: "/WaterDemand" },
               { name: "Climate Indices", path: "/ClimateIndices", disabled: true },
               { name: "Instrumentation", path: "/Instrumentation" },
-              { name: "UAV Imaging", path: "/UAVImaging" },
+              // { name: "UAV Imaging", path: "/UAVImaging" },
               { name: "Water Quality", path: "/WaterQuality" },
               { name: "Outreach & Education", path: "/OutreachEducation" },
             ].map((item, index) => (

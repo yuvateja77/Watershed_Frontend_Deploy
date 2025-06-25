@@ -154,17 +154,19 @@ function ChatBot() {
               <div className="flex items-start space-x-2">
                 <div className="bg-sky-100 rounded-lg p-3">
                   <p className="text-sky-800">
-                    Hello! I'm your water resources assistant. I can help you find information about:
-                    <br />
-                    - Stream flow data
-                    <br />
-                    - Water quality reports
-                    <br />
-                    - Climate indices
-                    <br />
-                    - And more!
+                    How can we help you?​
                     <br /><br />
-                    What would you like to know?
+                    <strong>Capabilities</strong>
+                    <br />
+                    The current version of experimental Gen AI model<br />
+                    is trained on ~900 publicly available reports and<br />
+                    articles.​<br /><br />
+                    For precise results, please add as many details<br />
+                    as possible and state questions clearly and<br />
+                    without ambiguity. ​<br /><br />
+                    This version is conversational, does not have<br />
+                    access to real-time data, and cannot perform<br />
+                    calculations.
                   </p>
                 </div>
               </div>

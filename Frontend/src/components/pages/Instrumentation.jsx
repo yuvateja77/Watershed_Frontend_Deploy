@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { FaCloudRain, FaSatelliteDish, FaMicroscope, FaWater, FaLeaf, FaThermometerHalf, FaCamera, FaBinoculars, FaGlobe, FaMapMarkedAlt } from 'react-icons/fa';
+import UAVImaging from './UAVImaging';
 
 const Instrumentation = () => {
+    const [showUAV, setShowUAV] = useState(false);
+    const [showRainTower, setShowRainTower] = useState(false);
+    const rainTowerRef = useRef(null);
+    const uavRef = useRef(null);
+
+    const handleRainTowerClick = () => {
+        setShowRainTower((prev) => {
+            const next = !prev;
+            setTimeout(() => {
+                if (next && rainTowerRef.current) {
+                    rainTowerRef.current.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100); // Wait for expand animation/render
+            return next;
+        });
+    };
+
+    const handleUAVClick = () => {
+        setShowUAV((prev) => {
+            const next = !prev;
+            setTimeout(() => {
+                if (next && uavRef.current) {
+                    uavRef.current.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+            return next;
+        });
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white p-6">
             {/* Header Section */}
@@ -15,13 +45,14 @@ const Instrumentation = () => {
                     {/* Feature 1 - Rain Tower Simulation */}
                     <div 
                         className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
-                        onClick={() => document.getElementById('rain-tower-section')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={handleRainTowerClick}
                     >
                         <div className="inline-block p-4 bg-blue-200 rounded-full mb-6 ring-2 ring-blue-300 ring-opacity-50">
                             <FaCloudRain className="h-8 w-8 text-blue-600" />
                         </div>
                         <h3 className="text-xl font-semibold text-blue-900 mb-3">Rain Tower Simulation</h3>
                         <p className="text-blue-700">Demonstration of our advanced rainfall simulation technology for research purposes</p>
+                        <p className="text-xs text-blue-500 font-semibold">{showRainTower ? 'Click to collapse' : 'Click to expand'}</p>
                     </div>
 
                     {/* Feature 2 - Environmental Sensing */}
@@ -34,13 +65,16 @@ const Instrumentation = () => {
                     </div>
 
                     {/* Feature 3 - UAV Imaging */}
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div
+                        className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
+                        onClick={handleUAVClick}
+                    >
                         <div className="inline-block p-4 bg-purple-200 rounded-full mb-6 ring-2 ring-purple-300 ring-opacity-50">
                             <FaCamera className="h-8 w-8 text-purple-600" />
                         </div>
                         <h3 className="text-xl font-semibold text-purple-900 mb-1">UAV Imaging</h3>
                         <p className="text-purple-700 mb-2">Aerial imaging and analysis using UAV technology</p>
-                        <p className="text-xs text-purple-500 font-semibold">Coming Soon</p>
+                        <p className="text-xs text-purple-500 font-semibold">{showUAV ? 'Click to collapse' : 'Click to expand'}</p>
                     </div>
 
                     {/* Feature 4 - Swan Lake Monitoring */}
@@ -74,20 +108,31 @@ const Instrumentation = () => {
                     </div>
                 </div>
 
-                {/* Video Section - Now with constrained dimensions */}
-                <div id="rain-tower-section" className="bg-white rounded-xl shadow-lg p-4 mb-6">
-                    <h2 className="text-xl font-semibold text-gray-700 mb-3">Rain Tower Demo</h2>
-                    <div className="flex justify-center">
-                        <video 
-                            controls 
-                            className="w-full max-w-3xl h-auto max-h-[50vh] rounded-lg shadow-md"
-                            src='https://storage.googleapis.com/miz_hydrology/Frontend_Data/Instrumentation/RainTower.MP4'
-                        />
+                {/* Expandable Rain Tower Simulation Section */}
+                {showRainTower && (
+                    <div className="my-8" id="rain-tower-section" ref={rainTowerRef}>
+                        <div className="bg-white rounded-xl shadow-lg p-4 mb-6">
+                            <h2 className="text-xl font-semibold text-gray-700 mb-3">Rain Tower Demo</h2>
+                            <div className="flex justify-center">
+                                <video 
+                                    controls 
+                                    className="w-full max-w-3xl h-auto max-h-[50vh] rounded-lg shadow-md"
+                                    src='https://storage.googleapis.com/miz_hydrology/Frontend_Data/Instrumentation/RainTower.MP4'
+                                />
+                            </div>
+                            <p className="mt-6 text-gray-700 text-base leading-relaxed">
+                                A 1m × 1m laboratory-scale rainfall simulator is available in the lab for various experiments. The simulator is based on positive volume displacement principle to deliver precise rainfall intensities ranging from 0.025 to 16 cm/hour. The setup uses telescopic stainless-steel tubing to create 4.5 mm droplets, which is passed through a redistribution screen to simulate natural rainfall. By adjusting the screen height, we can match droplet characteristics to those of natural rain at specific intensities. The fully automated system operated in a closed loop with a feed tank and solenoid valves. The tank is 14m high to ensure droplets reached 95% of their terminal velocity.​
+                            </p>
+                        </div>
                     </div>
-                    <p className="mt-6 text-gray-700 text-base leading-relaxed">
-                        A 1m × 1m laboratory-scale rainfall simulator is available in the lab for various experiments. The simulator is based on positive volume displacement principle to deliver precise rainfall intensities ranging from 0.025 to 16 cm/hour. The setup uses telescopic stainless-steel tubing to create 4.5 mm droplets, which is passed through a redistribution screen to simulate natural rainfall. By adjusting the screen height, we can match droplet characteristics to those of natural rain at specific intensities. The fully automated system operated in a closed loop with a feed tank and solenoid valves. The tank is 14m high to ensure droplets reached 95% of their terminal velocity.​
-                    </p>
-                </div>
+                )}
+
+                {/* Expandable UAV Imaging Section */}
+                {showUAV && (
+                    <div className="my-8" ref={uavRef}>
+                        <UAVImaging />
+                    </div>
+                )}
 
                 {/* Resources Section */}
                 <div className="bg-white rounded-xl shadow-lg p-5">
